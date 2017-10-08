@@ -1,7 +1,9 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
+from sms import sendsms
 
+number = "918585926272"
 thresh=2
 fps = 24
 plt.axis([0, 10, 0, 6])
@@ -42,8 +44,10 @@ while True:
 		if i==prev+125:
 			if l>=l1+thresh:
 				time = i/fps
-
-				print "traffic Jam detected at time = "+ str(time) + "s" 
+				mesg = "traffic Jam detected at time = "+ str(time) + "s" 
+				print  mesg
+				message = mesg
+				sendsms(message,number)
 				l1=l
 			else :
 				print "No traffic jam"
